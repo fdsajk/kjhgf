@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <title>이벤트 페이지</title>
+   <meta charset="utf-8" />
+   <style>
+      body {
+         font-family: Arial, sans-serif;
+      }
+
+      .container {
+         max-width: 800px;
+         margin: 0 auto;
+         padding: 20px;
+         background-color: #fff;
+         box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+         display: flex;
+      }
+
+      .event-poster {
+         flex: 1;
+         margin-right: 20px;
+      }
+
+      .event-poster img {
+         max-width: 100%;
+         height: auto;
+      }
+
+      .event-details {
+         flex: 2;
+      }
+
+      .event-title {
+         text-align: center;
+         font-size: 24px;
+         font-weight: bold;
+         margin-bottom: 20px;
+      }
+
+      .event-info {
+         margin-bottom: 20px;
+      }
+
+      .event-info p {
+         margin-bottom: 10px;
+      }
+
+      .comment-section {
+         margin-bottom: 20px;
+      }
+
+      .comment-section textarea {
+         width: 100%;
+         padding: 8px;
+         font-size: 14px;
+         border: 1px solid #ccc;
+         border-radius: 4px;
+         resize: vertical;
+      }
+
+      .comment-section button {
+         padding: 8px 16px;
+         font-size: 14px;
+         background-color: #ff0066;
+         color: #fff;
+         border: none;
+         border-radius: 4px;
+         cursor: pointer;
+      }
+
+      .comment-list {
+         list-style-type: none;
+         padding: 0;
+         margin: 0;
+      }
+
+      .comment-list li {
+         padding: 10px;
+         border: 1px solid #ccc;
+         border-radius: 4px;
+         margin-bottom: 10px;
+      }
+
+      .comment-list li:last-child {
+         margin-bottom: 0;
+      }
+
+      .comment-list li .comment-info {
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
+         margin-bottom: 5px;
+      }
+
+      .comment-list li .comment-info .comment-date {
+         color: #999;
+         font-size: 12px;
+      }
+
+      .comment-list li .comment-content {
+         font-size: 14px;
+      }
+   </style>
+</head>
+<body>
+   <div class="container">
+      <div class="event-poster">
+         <img src="event_poster.jpg" alt="이벤트 포스터">
+      </div>
+      <div class="event-details">
+         <h2 class="event-title">홈페이지 오픈 이벤트</h2>
+         <div class="event-info">
+            <p><strong>이벤트 기간:</strong> 2023년 06월 15일 ~ 2023년 6월 30일</p>
+            <p><strong>응모방법:</strong> 개인 SNS에 홈페이지 홍보 후 댓글로 링크 첨부</p>
+            <p><strong>당첨자 발표:</strong> 당첨자 개인 SNS로 추후 DM 예정</p>
+         </div>
+         <div class="comment-section">
+            <textarea placeholder="댓글을 작성하세요"></textarea>
+            <button onclick="submitComment()">작성</button>
+         </div>
+
+   <script>
+      function submitComment() {
+         var commentTextarea = document.querySelector(".comment-section textarea");
+         var commentContent = commentTextarea.value;
+
+         if (commentContent.trim() !== "") {
+            var commentList = document.querySelector(".comment-list");
+            var currentDate = new Date();
+            var commentDate = currentDate.toLocaleString();
+
+            var newComment = document.createElement("li");
+            newComment.innerHTML = `
+               <div class="comment-info">
+                  <span class="comment-author">User</span>
+                  <span class="comment-date">${commentDate}</span>
+               </div>
+               <div class="comment-content">${commentContent}</div>
+            `;
+
+            commentList.appendChild(newComment);
+
+            commentTextarea.value = "";
+         }
+      }
+   </script>
+</body>
+</html>
+
